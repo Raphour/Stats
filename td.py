@@ -16,9 +16,9 @@ plt.pie(nombreClients,labels=nombreClients.index,autopct='%1.0f%%',counterclock=
 plt.title("Part de marché sur l'année" +str(annee)+  "en quantité des différentes entreprises sur le produit"+str(produit))
 
 ClientParEntreprise = table_clients.groupby(["CLI_ANNEE","CLI_CHOIX"])
-choixClientAnnee1 = table_clients[(table_clients["CLI_CHOIX"]>0)&(table_clients["CLI_ANNEE"]==1)][["CLI_CHOIX","CLI_PROD"]].value_counts()
+choixClientAnnee1 = table_clients[(table_clients["CLI_CHOIX"]>0)&(table_clients["CLI_ANNEE"]==1)][["CLI_PROD","CLI_CHOIX"]].value_counts()
 print(choixClientAnnee1)
-choixClientAnnee2 = table_clients[(table_clients["CLI_CHOIX"]>0)&(table_clients["CLI_ANNEE"]==2)][["CLI_CHOIX","CLI_PROD"]].value_counts()
+choixClientAnnee2 = table_clients[(table_clients["CLI_CHOIX"]>0)&(table_clients["CLI_ANNEE"]==2)][["CLI_PROD","CLI_CHOIX"]].value_counts()
 
 print("----------------------------------")
 print(choixClientAnnee2)
