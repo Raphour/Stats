@@ -13,7 +13,7 @@ table_clients = pd.read_csv(r'd:\Work\Stats\Stats\data\base_comptoir_espace_tabl
 table_decisions_entreprises=pd.read_csv(r'd:\Work\Stats\Stats\data\base_comptoir_espace_table_decisions_entreprises.csv',sep=';')
 
 
-# EXERCICE 1
+# Diagramme 1
 '''
 fig, ax = plt.subplots()
 
@@ -29,6 +29,10 @@ plt.title("Part de marché sur l'année" +str(annee)+  "en quantité des différ
 
 '''
 
+
+
+# Diagramme 2
+'''
 choixClientAnnee1 = table_clients[(table_clients["CLI_CHOIX"]>0)&(table_clients["CLI_ANNEE"]==1)][["CLI_CHOIX","CLI_PROD","CLI_ANNEE"]].value_counts()
 choixClientAnnee2 = table_clients[(table_clients["CLI_CHOIX"]>0)&(table_clients["CLI_ANNEE"]==2)][["CLI_PROD","CLI_CHOIX","CLI_ANNEE"]].value_counts()
 
@@ -59,7 +63,23 @@ plt.bar(x+width/2,chiffreAffaireTableAnnee2,width)
 plt.legend(['Année 1', 'Année 2'], loc='upper left')
 plt.show()
 
+'''
+
+
+# Diagramme 3
 
 
 
 
+choixPrixClients = table_clients[table_clients["CLI_PROD"]==1][["CLI_CHOIX","CLI_PRIX"]]
+print(choixPrixClients["CLI_PRIX"].value_counts())
+
+
+
+
+# GRapgique de sistribution de CLI_PRIX pour les clients qui ont choisi le produit 1 sans Shape mismatch
+
+choixPrixClientsEnt1 = table_clients[(table_clients["CLI_PROD"]==1)&(table_clients["CLI_CHOIX"]==1)][["CLI_PRIX"]]
+
+plt.bar(choixPrixClients["CLI_PRIX"].value_counts().index,choixPrixClients["CLI_PRIX"].value_counts(),2500)
+plt.show()
