@@ -1,17 +1,18 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-'''
---LINUX/IUT
+
+#--LINUX/IUT
 table_clients = pd.read_csv(f'data/base_comptoir_espace_table_clients.csv',sep=';')
 table_decisions_entreprises=pd.read_csv(f'data/base_comptoir_espace_table_decisions_entreprises.csv',sep=';')
-'''
+
 
 
 # WINDOWS / MAISON
+'''
 table_clients = pd.read_csv(r'd:\Work\Stats\Stats\data\base_comptoir_espace_table_clients.csv',sep=';')
 table_decisions_entreprises=pd.read_csv(r'd:\Work\Stats\Stats\data\base_comptoir_espace_table_decisions_entreprises.csv',sep=';')
-
+'''
 
 # Diagramme 1
 '''
@@ -72,14 +73,21 @@ plt.show()
 
 
 choixPrixClients = table_clients[table_clients["CLI_PROD"]==1][["CLI_CHOIX","CLI_PRIX"]]
-print(choixPrixClients["CLI_PRIX"].value_counts())
-
-
-
-
-# GRapgique de sistribution de CLI_PRIX pour les clients qui ont choisi le produit 1 sans Shape mismatch
-
 choixPrixClientsEnt1 = table_clients[(table_clients["CLI_PROD"]==1)&(table_clients["CLI_CHOIX"]==1)][["CLI_PRIX"]]
+choixPrixClientsEnt2 = table_clients[(table_clients["CLI_PROD"]==1)&(table_clients["CLI_CHOIX"]==2)][["CLI_PRIX"]]
+choixPrixClientsEnt3 = table_clients[(table_clients["CLI_PROD"]==1)&(table_clients["CLI_CHOIX"]==3)][["CLI_PRIX"]]
+choixPrixClientsEnt4 = table_clients[(table_clients["CLI_PROD"]==1)&(table_clients["CLI_CHOIX"]==4)][["CLI_PRIX"]]
 
-plt.bar(choixPrixClients["CLI_PRIX"].value_counts().index,choixPrixClients["CLI_PRIX"].value_counts(),2500)
+fig, axs = plt.subplots(2,2)
+fig.suptitle('Horizontally stacked subplots')
+
+
+
+axs[0,0] = plt.bar(choixPrixClientsEnt1["CLI_PRIX"].value_counts().index,choixPrixClientsEnt1["CLI_PRIX"].value_counts(),2500)
+
+axs[0,1] = plt.bar(choixPrixClientsEnt2["CLI_PRIX"].value_counts().index,choixPrixClientsEnt2["CLI_PRIX"].value_counts(),2500)
+
+axs[1,0] = plt.bar(choixPrixClientsEnt3["CLI_PRIX"].value_counts().index,choixPrixClientsEnt3["CLI_PRIX"].value_counts(),2500)
+
+axs[1,1] = plt.bar(choixPrixClientsEnt4["CLI_PRIX"].value_counts().index,choixPrixClientsEnt4["CLI_PRIX"].value_counts(),2500)
 plt.show()
